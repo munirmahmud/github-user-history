@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { GithubContext } from '../../context/context';
+import Doughnut from './Charts/Doughnut';
 import PieChart from './Charts/PieChart';
 import SampleChart from './Charts/SampleChart';
 
@@ -8,31 +9,40 @@ import SampleChart from './Charts/SampleChart';
 const Repos = () => {
     const { repos } = GithubContext();
 
-    let languages = repos.reduce((total, item) => {
-        const { language } = item;
+    const languages = repos.reduce((total, item) => {
+        const { language, stargazers_count } = item;
         if(!language) return total;
 
         if(!total[language]) {
-            total[language] = { label: language, value: 1};
+            total[language] = { label: language, value: 1, stars: stargazers_count };
         } else {
             total[language] = {
                 ...total[language],
                 value: total[language].value + 1,
+                stars: total[language].stars + stargazers_count,
             };
         }
 
         return total;
     }, {});
 
-    languages = Object.values(languages)
+    // Most used language
+    const mostUsed = Object.values(languages)
         .sort((a, b) => b.value - a.value)
         .slice(0, 5);
 
+    //Most stars per language
+    const mostPopular = Object.values(languages)
+        .sort((a, b) => b.stars - a.stars)
+        .map(item => ({...item, value: item.stars }))
+        .slice(0, 5);
+        
     return (
         <section className="section">
             <Container className="container-wrapper">
-                <PieChart data={languages} />    
-                <SampleChart data={languages} />
+                <PieChart data={mostUsed} />    
+                <SampleChart data={mostUsed} />
+                <Doughnut data={mostPopular} />
             </Container>   
         </section>
     );
