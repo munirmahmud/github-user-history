@@ -2,7 +2,7 @@ import React from 'react';
 import { FiUserPlus, FiUsers } from 'react-icons/fi';
 import { GoGist, GoRepo } from 'react-icons/go';
 import styled from 'styled-components';
-import { GithubContext } from '../../context/context';
+import { GithubContext } from '../../../context/context';
 import Item from './Item';
 
 const UserInfo = () => {
@@ -42,7 +42,7 @@ const UserInfo = () => {
 
     return (
         <section className="section">
-            <Container className="section-center">
+            <Container className="container-wrapper">
                 {items.length > 0 && items.map(item => {
                     return <Item key={item.id} item={item} />
                 })}

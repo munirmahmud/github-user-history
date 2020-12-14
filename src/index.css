@@ -41,13 +41,13 @@ a {
     position: relative;
 }
 
-.section-center {
+.container-wrapper {
     width: 90vw;
     margin: 0 auto;
     max-width: 1170px;
 }
 @media screen and (min-width: 992px) {
-    .section-center {
+    .container-wrapper {
         width: 95vw;
     }
 }
