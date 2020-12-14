@@ -12,6 +12,7 @@
   --clr-primary-5: hsl(185, 62%, 45%);
   --clr-primary-8: hsl(184, 80%, 74%);
   --clr-primary-1: hsl(185, 91%, 17%);
+  --clr-white: #fff;
 
   --spacing: 0.1rem;
   --transition: all 0.3s linear;
@@ -35,6 +36,21 @@ a {
   text-decoration: none;
 }
 
+.section {
+    padding: 1rem 0;
+    position: relative;
+}
+
+.section-center {
+    width: 90vw;
+    margin: 0 auto;
+    max-width: 1170px;
+}
+@media screen and (min-width: 992px) {
+    .section-center {
+        width: 95vw;
+    }
+}
 
 .btn {
   text-transform: uppercase;
